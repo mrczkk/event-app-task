@@ -1,5 +1,9 @@
 const EventDetailsView = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Some details</h1>
+    </div>
+  );
 };
 
 export default EventDetailsView;

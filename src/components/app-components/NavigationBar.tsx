@@ -1,28 +1,14 @@
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
+import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
+import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger>File</MenubarTrigger>
-        <MenubarContent>
-          <MenubarItem>
-            New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-          </MenubarItem>
-          <MenubarItem>New Window</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>Share</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>Print</MenubarItem>
-        </MenubarContent>
+        <MenubarTrigger className="cursor-pointer">
+          <Link to={"/events"}>Events</Link>
+          <Link to={"/new-event"}>Add new event</Link>
+        </MenubarTrigger>
       </MenubarMenu>
     </Menubar>
   );
