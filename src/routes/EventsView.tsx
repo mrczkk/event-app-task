@@ -1,9 +1,7 @@
+import EventItem from "@/components/app-components/EventItem";
+
 const EventsView = () => {
-  return (
-    <div>
-      <h1>Events</h1>
-    </div>
-  );
+  return <EventItem />;
 };
 
 export default EventsView;
