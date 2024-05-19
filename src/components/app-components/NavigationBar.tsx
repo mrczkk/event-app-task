@@ -1,7 +1,6 @@
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
@@ -12,14 +11,10 @@ const NavigationBar = () => {
     <NavigationMenu className="bg-primary text-secondary px-4 py-2 w-full rounded-lg mb-12">
       <NavigationMenuList className="gap-x-4">
         <NavigationMenuItem>
-          <NavigationMenuLink>
-            <Link to={"/events"}>Events</Link>
-          </NavigationMenuLink>
+          <Link to={"/events"}>Events</Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink>
-            <Link to={"/new-event"}>Add new event</Link>
-          </NavigationMenuLink>
+          <Link to={"/new-event"}>Add new event</Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
