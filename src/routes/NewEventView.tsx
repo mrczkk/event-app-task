@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -30,17 +29,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { v4 as uuid } from "uuid";
+import { postEvent } from "@/lib/dbFunctions";
 
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
 
 const formSchema = z.object({
+  id: z.string(),
   title: z.string().min(2).max(50),
   description: z.string().min(2).max(255),
   image: z.string().url(),
-  eventCategory: z.string(),
-  eventDateTime: z.string(),
+  eventCategory: z.string({
+    required_error: "Please select category of the event!",
+  }),
+  eventDateTime: z.date(),
   location: z.string(),
   phone: z.string().regex(phoneRegex, "Invalid Number!"),
   email: z.string().email(),
@@ -50,20 +54,21 @@ const NewEventView = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-      eventCategory: "",
-      eventDateTime: "",
-      location: "",
-      phone: "",
-      email: "",
+      id: uuid().slice(0, 8),
+      title: "Test event",
+      description: "Lorem ipsum dolor sit amet",
+      image:
+        "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg",
+      eventCategory: "culture",
+      eventDateTime: new Date(),
+      location: "Gliwice, Poland",
+      phone: "123456789",
+      email: "test@test.com",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("anything?");
-    console.log(values);
+    postEvent(values);
   }
 
   return (
