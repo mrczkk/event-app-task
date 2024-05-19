@@ -1,4 +1,4 @@
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get, child } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -11,8 +11,6 @@ const firebaseConfig = {
   databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
 };
 
-console.log(firebaseConfig);
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 interface EventType {
@@ -35,5 +33,18 @@ export const postEvent = async (event: EventType) => {
     console.error("Error adding document: ", error);
   } finally {
     console.log("Event added successfully", event);
+  }
+};
+
+export const getEvents = async () => {
+  const dbRef = ref(getDatabase());
+  const snapshot = await get(child(dbRef, `events`));
+  if (snapshot.exists()) {
+    const eventsObject = snapshot.val();
+    const events = Object.values(eventsObject);
+    return events;
+  } else {
+    console.log("No data available");
+    return [];
   }
 };

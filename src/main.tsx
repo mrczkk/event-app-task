@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorView from "./routes/ErrorView.tsx";
-import EventsView from "./routes/EventsView.tsx";
+import EventsView, { loader as EventsLoader } from "./routes/EventsView.tsx";
 import NewEventView from "./routes/NewEventView.tsx";
 import EventDetailsView from "./routes/EventDetailsView.tsx";
 import Root from "./routes/Root.tsx";
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
         path: "/events",
         element: <EventsView />,
         errorElement: <ErrorView />,
+        loader: EventsLoader,
         children: [
           {
             path: ":id",
