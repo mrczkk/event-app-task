@@ -1,10 +1,10 @@
-import { getEvents } from "@/lib/dbFunctions";
+import { EventType, getEvents } from "@/lib/dbFunctions";
 import { useLoaderData, defer, Await } from "react-router-dom";
 import { Suspense } from "react";
 import EventsList from "@/components/app-components/EventsList/EventsList";
 
 const EventsView = () => {
-  const { events } = useLoaderData();
+  const { events } = useLoaderData() as { events: EventType[] };
 
   return (
     <section>

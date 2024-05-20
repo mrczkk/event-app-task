@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-interface EventType {
+export interface EventType {
   id: string;
   title: string;
   description: string;

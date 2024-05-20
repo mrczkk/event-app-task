@@ -1,4 +1,4 @@
-import { getEvent } from "@/lib/dbFunctions";
+import { getEvent, EventType } from "@/lib/dbFunctions";
 import { useLoaderData, defer, Await } from "react-router-dom";
 import { Suspense } from "react";
 import {
@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const EventComponent = ({ event }) => {
+const EventComponent = ({ event }: { event: EventType }) => {
   return (
     <Card>
       <img
@@ -48,7 +48,7 @@ const EventComponent = ({ event }) => {
 };
 
 const EventDetailsView = () => {
-  const { event } = useLoaderData();
+  const { event } = useLoaderData() as { event: EventType };
 
   return (
     <Suspense fallback={<p className="text-center">Loading...</p>}>
@@ -61,7 +61,7 @@ const EventDetailsView = () => {
 
 export default EventDetailsView;
 
-export function loader({ params }) {
+export function loader({ params }: { params: { eventId: string } }) {
   return defer({
     event: getEvent(params.eventId),
   });
