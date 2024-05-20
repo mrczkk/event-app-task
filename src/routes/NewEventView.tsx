@@ -55,15 +55,14 @@ const NewEventView = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       id: uuid().slice(0, 8),
-      title: "Test event",
-      description: "Lorem ipsum dolor sit amet",
-      image:
-        "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg",
-      eventCategory: "culture",
-      eventDateTime: new Date(),
-      location: "Gliwice, Poland",
-      phone: "123456789",
-      email: "test@test.com",
+      title: "",
+      description: "",
+      image: "",
+      eventCategory: "",
+      eventDateTime: undefined,
+      location: "",
+      phone: "",
+      email: "",
     },
   });
 
@@ -217,7 +216,12 @@ const NewEventView = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="mr-2">
+          Submit
+        </Button>
+        <Button variant={"outline"} type="button" onClick={form.reset}>
+          Clear
+        </Button>
       </form>
     </Form>
   );
