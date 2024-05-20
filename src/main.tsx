@@ -5,7 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorView from "./routes/ErrorView.tsx";
 import EventsView, { loader as EventsLoader } from "./routes/EventsView.tsx";
 import NewEventView from "./routes/NewEventView.tsx";
-import EventDetailsView from "./routes/EventDetailsView.tsx";
+import EventDetailsView, {
+  loader as EventDetailsLoader,
+} from "./routes/EventDetailsView.tsx";
 import Root from "./routes/Root.tsx";
 
 const router = createBrowserRouter([
@@ -15,16 +17,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorView />,
     children: [
       {
-        path: "/events",
+        path: "events",
         element: <EventsView />,
-        errorElement: <ErrorView />,
         loader: EventsLoader,
-        children: [
-          {
-            path: ":id",
-            element: <EventDetailsView />,
-          },
-        ],
+      },
+      {
+        path: "events/:eventId",
+        element: <EventDetailsView />,
+        loader: EventDetailsLoader,
       },
       {
         path: "/new-event",

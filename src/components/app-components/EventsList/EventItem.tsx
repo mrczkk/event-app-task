@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const EventItem = ({ event }) => {
   return (
     <li>
-      <Link to={"1"}>
+      <Link to={event.id}>
         <Card className="flex relative">
           <img src={event.image} alt={event.title} className="max-w-64" />
           <div className="content">
