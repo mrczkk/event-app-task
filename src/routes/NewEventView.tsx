@@ -74,7 +74,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Event title</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Title of event" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -145,45 +145,6 @@ const NewEventView = () => {
             </FormItem>
           )}
         />
-        {/* <FormField
-          control={form.control}
-          name="eventDateTime"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of event</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
         <FormField
           control={form.control}
           name="location"
@@ -191,7 +152,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Location of event</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Location" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -204,7 +165,12 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Contact number</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input
+                  type="tel"
+                  placeholder="Type your phone number..."
+                  pattern="[0-9]{9}"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -217,7 +183,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Contact email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Type mail for contact" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
