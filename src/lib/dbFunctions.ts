@@ -19,7 +19,7 @@ export interface EventType {
   description: string;
   image: string;
   eventCategory: string;
-  eventDateTime: Date;
+  eventDateTime: string;
   location: string;
   phone: string;
   email: string;

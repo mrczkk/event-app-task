@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { dateFormat } from "@/lib/utils";
 
 const EventComponent = ({ event }: { event: EventType }) => {
   return (
@@ -27,7 +28,12 @@ const EventComponent = ({ event }: { event: EventType }) => {
             </span>
           </CardTitle>
           <CardDescription>
-            Location: {event.location}, time: {event.eventDateTime}
+            Location: {event.location}, time:{" "}
+            {dateFormat(event.eventDateTime, "pl-PL", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </CardDescription>
         </CardHeader>
         <CardContent>

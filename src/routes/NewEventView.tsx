@@ -44,7 +44,7 @@ const formSchema = z.object({
   eventCategory: z.string({
     required_error: "Please select category of the event!",
   }),
-  eventDateTime: z.date(),
+  eventDateTime: z.string(),
   location: z.string(),
   phone: z.string().regex(phoneRegex, "Invalid Number!"),
   email: z.string().email(),
@@ -59,7 +59,7 @@ const NewEventView = () => {
       description: "",
       image: "",
       eventCategory: "",
-      eventDateTime: undefined,
+      eventDateTime: "",
       location: "",
       phone: "",
       email: "",
@@ -142,6 +142,19 @@ const NewEventView = () => {
           control={form.control}
           name="eventDateTime"
           render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date of event</FormLabel>
+              <FormControl>
+                <Input type="datetime-local" placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* <FormField
+          control={form.control}
+          name="eventDateTime"
+          render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Date of event</FormLabel>
               <Popover>
@@ -176,7 +189,7 @@ const NewEventView = () => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="location"
