@@ -29,17 +29,33 @@ const phoneRegex = new RegExp(
 );
 
 const formSchema = z.object({
-  id: z.string(),
+  id: z.string().min(8).max(8),
   title: z.string().min(2).max(50),
   description: z.string().min(2).max(255),
-  image: z.string().url(),
+  image: z
+    .string({
+      required_error: "Please paste image URL!",
+    })
+    .url(),
   eventCategory: z.string({
     required_error: "Please select category of the event!",
   }),
-  eventDateTime: z.string(),
-  location: z.string(),
-  phone: z.string().regex(phoneRegex, "Invalid Number!"),
-  email: z.string().email(),
+  eventDateTime: z.string({
+    required_error: "Please specify date and time of the event!",
+  }),
+  location: z.string({
+    required_error: "Please type location of the event!",
+  }),
+  phone: z
+    .string({
+      required_error: "Please type the phone number!",
+    })
+    .regex(phoneRegex, "Invalid Number!"),
+  email: z
+    .string({
+      required_error: "Please type email for contact!",
+    })
+    .email(),
 });
 
 const NewEventView = () => {
@@ -74,7 +90,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Event title</FormLabel>
               <FormControl>
-                <Input placeholder="Title of event" {...field} />
+                <Input placeholder="Title of event" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -91,6 +107,7 @@ const NewEventView = () => {
                   placeholder="Tell something about the event..."
                   className="resize-none"
                   {...field}
+                  required
                 />
               </FormControl>
               <FormMessage />
@@ -104,7 +121,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Image URL</FormLabel>
               <FormControl>
-                <Input placeholder="https..." {...field} />
+                <Input placeholder="https..." {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -116,7 +133,11 @@ const NewEventView = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                required
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select an event category" />
@@ -139,7 +160,12 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Date of event</FormLabel>
               <FormControl>
-                <Input type="datetime-local" placeholder="shadcn" {...field} />
+                <Input
+                  type="datetime-local"
+                  placeholder="shadcn"
+                  {...field}
+                  required
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -152,7 +178,7 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Location of event</FormLabel>
               <FormControl>
-                <Input placeholder="Location" {...field} />
+                <Input placeholder="Location" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -170,6 +196,7 @@ const NewEventView = () => {
                   placeholder="Type your phone number..."
                   pattern="[0-9]{9}"
                   {...field}
+                  required
                 />
               </FormControl>
               <FormMessage />
@@ -183,7 +210,11 @@ const NewEventView = () => {
             <FormItem>
               <FormLabel>Contact email</FormLabel>
               <FormControl>
-                <Input placeholder="Type mail for contact" {...field} />
+                <Input
+                  placeholder="Type mail for contact"
+                  {...field}
+                  required
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
