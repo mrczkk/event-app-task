@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/select";
 import { v4 as uuid } from "uuid";
 import { postEvent } from "@/lib/dbFunctions";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
