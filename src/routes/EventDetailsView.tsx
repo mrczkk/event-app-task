@@ -1,6 +1,5 @@
 import { EventType } from "@/lib/dbFunctions";
 import { useParams } from "react-router-dom";
-import { Suspense } from "react";
 import {
   Card,
   CardContent,
@@ -62,9 +61,7 @@ const EventDetailsView = () => {
   );
 
   return (
-    <Suspense fallback={<Loader />}>
-      <EventComponent event={event} />
-    </Suspense>
+    <section>{event ? <EventComponent event={event} /> : <Loader />}</section>
   );
 };
 
