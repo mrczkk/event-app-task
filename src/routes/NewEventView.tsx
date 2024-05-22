@@ -21,10 +21,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { v4 as uuid } from "uuid";
-import { addNewEvent } from "@/store/eventsSlice/events-actions.js";
+import { addNewEvent } from "@/store/eventsSlice/events-actions";
 import { useNavigate } from "react-router-dom";
 import { phoneRegex } from "@/lib/utils";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/store/hooks";
 
 const formSchema = z.object({
   id: z.string().min(8).max(8),
@@ -57,7 +57,7 @@ const formSchema = z.object({
 });
 
 const NewEventView = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

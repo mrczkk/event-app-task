@@ -1,8 +1,9 @@
+import { AppDispatch } from "..";
 import { eventsActions } from "./events-slice";
 import { postEvent, getEvents, EventType } from "@/lib/dbFunctions.ts";
 
 export const addNewEvent = (eventData: EventType) => {
-  return async (dispatch) => {
+  return async (dispatch: AppDispatch) => {
     try {
       postEvent(eventData).then(() => {
         dispatch(eventsActions.addEvent(eventData));
@@ -14,7 +15,7 @@ export const addNewEvent = (eventData: EventType) => {
 };
 
 export const fetchEvents = () => {
-  return async (dispatch) => {
+  return async (dispatch: AppDispatch) => {
     try {
       const response = await getEvents();
       dispatch(eventsActions.getEvents(response));
