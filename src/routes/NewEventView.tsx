@@ -20,17 +20,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { v4 as uuid } from "uuid";
 import { postEvent } from "@/lib/dbFunctions";
+import { redirect, useNavigate } from "react-router-dom";
 
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
@@ -51,6 +43,7 @@ const formSchema = z.object({
 });
 
 const NewEventView = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,6 +61,7 @@ const NewEventView = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     postEvent(values);
+    navigate("/events");
   }
 
   return (
