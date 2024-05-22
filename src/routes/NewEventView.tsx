@@ -21,9 +21,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { v4 as uuid } from "uuid";
-import { postEvent } from "@/lib/dbFunctions";
+import { addNewEvent } from "@/store/eventsSlice/events-actions.js";
 import { useNavigate } from "react-router-dom";
 import { phoneRegex } from "@/lib/utils";
+import { useDispatch } from "react-redux";
 
 const formSchema = z.object({
   id: z.string().min(8).max(8),
@@ -56,6 +57,7 @@ const formSchema = z.object({
 });
 
 const NewEventView = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -73,7 +75,7 @@ const NewEventView = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    postEvent(values);
+    dispatch(addNewEvent(values));
     navigate("/events");
   }
 

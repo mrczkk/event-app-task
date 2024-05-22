@@ -1,5 +1,5 @@
-import { getEvent, EventType } from "@/lib/dbFunctions";
-import { useLoaderData, defer, Await } from "react-router-dom";
+import { EventType } from "@/lib/dbFunctions";
+import { useParams } from "react-router-dom";
 import { Suspense } from "react";
 import {
   Card,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { dateFormat } from "@/lib/utils";
 import Loader from "@/components/app-components/Loader";
+import { useSelector } from "react-redux";
 
 const EventComponent = ({ event }: { event: EventType }) => {
   return (
@@ -55,21 +56,16 @@ const EventComponent = ({ event }: { event: EventType }) => {
 };
 
 const EventDetailsView = () => {
-  const { event } = useLoaderData() as { event: EventType };
+  const { eventId } = useParams();
+  const event = useSelector((state) =>
+    state.events.events.find((e) => e.id === eventId)
+  );
 
   return (
     <Suspense fallback={<Loader />}>
-      <Await resolve={event}>
-        {(loadedEvent) => <EventComponent event={loadedEvent} />}
-      </Await>
+      <EventComponent event={event} />
     </Suspense>
   );
 };
 
 export default EventDetailsView;
-
-export function loader({ params }: { params: { eventId: string } }) {
-  return defer({
-    event: getEvent(params.eventId),
-  });
-}
