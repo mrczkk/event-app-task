@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { dateFormat } from "@/lib/utils";
+import Loader from "@/components/app-components/Loader";
 
 const EventComponent = ({ event }: { event: EventType }) => {
   return (
@@ -57,7 +58,7 @@ const EventDetailsView = () => {
   const { event } = useLoaderData() as { event: EventType };
 
   return (
-    <Suspense fallback={<p className="text-center">Loading...</p>}>
+    <Suspense fallback={<Loader />}>
       <Await resolve={event}>
         {(loadedEvent) => <EventComponent event={loadedEvent} />}
       </Await>
