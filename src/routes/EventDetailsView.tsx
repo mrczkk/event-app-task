@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { dateFormat } from "@/lib/utils";
 import Loader from "@/components/app-components/Loader";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/store/hooks";
 
 const EventComponent = ({ event }: { event: EventType }) => {
   return (
@@ -56,7 +56,7 @@ const EventComponent = ({ event }: { event: EventType }) => {
 
 const EventDetailsView = () => {
   const { eventId } = useParams();
-  const event = useSelector((state) =>
+  const event = useAppSelector((state) =>
     state.events.events.find((e) => e.id === eventId)
   );
 

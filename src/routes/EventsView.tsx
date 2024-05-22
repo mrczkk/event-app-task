@@ -1,9 +1,9 @@
 import EventsList from "@/components/app-components/EventsList/EventsList";
 import Loader from "@/components/app-components/Loader";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/store/hooks";
 
 const EventsView = () => {
-  const events = useSelector((state) => state.events.events);
+  const events = useAppSelector((state) => state.events.events);
 
   return (
     <section>

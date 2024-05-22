@@ -5,10 +5,10 @@ import EventsView from "./routes/EventsView.tsx";
 import NewEventView from "./routes/NewEventView.tsx";
 import EventDetailsView from "./routes/EventDetailsView.tsx";
 import Root from "./routes/Root.tsx";
-import { useDispatch } from "react-redux";
 
-import { fetchEvents } from "./store/eventsSlice/events-actions";
+import { fetchEvents } from "./store/eventsSlice/events-actions.ts";
 import { useEffect } from "react";
+import { useAppDispatch } from "./store/hooks.ts";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchEvents());

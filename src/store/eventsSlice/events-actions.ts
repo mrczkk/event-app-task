@@ -1,7 +1,7 @@
 import { eventsActions } from "./events-slice";
-import { postEvent, getEvents } from "@/lib/dbFunctions.ts";
+import { postEvent, getEvents, EventType } from "@/lib/dbFunctions.ts";
 
-export const addNewEvent = (eventData) => {
+export const addNewEvent = (eventData: EventType) => {
   return async (dispatch) => {
     try {
       postEvent(eventData).then(() => {

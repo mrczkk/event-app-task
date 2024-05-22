@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { EventType } from "@/lib/dbFunctions";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const eventsSlice = createSlice({
   name: "events",
   initialState: {
-    events: [],
+    events: [] as EventType[],
   },
   reducers: {
-    addEvent(state, action) {
+    addEvent(state, action: PayloadAction<EventType>) {
       state.events.push(action.payload);
     },
     getEvents(state, action) {
