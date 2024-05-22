@@ -1,14 +1,15 @@
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { EventType } from "@/lib/dbFunctions";
 import { Link } from "react-router-dom";
+import { dateFormat } from "@/lib/utils";
 
-const EventItem = ({ event }) => {
+const EventItem = ({ event }: { event: EventType }) => {
   return (
     <li>
       <Link to={event.id}>
@@ -22,9 +23,15 @@ const EventItem = ({ event }) => {
                 {event.eventCategory.toUpperCase()}
               </span>
             </CardHeader>
-            {/* <CardFooter>
-              <p>{event.da}</p>
-            </CardFooter> */}
+            <CardFooter>
+              <p>
+                {dateFormat(event.eventDateTime, "pl-PL", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+            </CardFooter>
           </div>
         </Card>
       </Link>
