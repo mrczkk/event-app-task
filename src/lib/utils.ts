@@ -14,4 +14,4 @@ export function dateFormat(
   return formattedDate;
 }
 
-export const phoneRegex = new RegExp(/^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$/);
+export const phoneRegex = new RegExp(/^[0-9()-]+$/);

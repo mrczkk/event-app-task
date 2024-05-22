@@ -14,7 +14,11 @@ const EventItem = ({ event }: { event: EventType }) => {
     <li>
       <Link to={event.id}>
         <Card className="flex relative">
-          <img src={event.image} alt={event.title} className="max-w-64" />
+          <img
+            src={event.image}
+            alt={event.title}
+            className="max-w-64 max-h-48 w-full object-cover"
+          />
           <div className="content">
             <CardHeader>
               <CardTitle className="text-2xl">{event.title}</CardTitle>

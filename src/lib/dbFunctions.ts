@@ -49,7 +49,7 @@ export const getEvents = async () => {
   }
 };
 
-export const getEvent = async (eventId: string) => {
+export const getEventById = async (eventId: string) => {
   const dbRef = ref(getDatabase());
   const snapshot = await get(child(dbRef, `events/${eventId}`));
   if (snapshot.exists()) {
